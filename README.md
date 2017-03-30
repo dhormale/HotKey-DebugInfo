@@ -1,1 +1,1 @@
-### Angular Starter Plunker - Typescript
+### Hotkey to show debug information using Angular 2 
