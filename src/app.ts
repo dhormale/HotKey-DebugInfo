@@ -11,15 +11,17 @@ import { HotKey } from './hotkey';
       <h2>To view Hotkey working, press ctl+shift+alt+i</h2>
     </div>
     
-    <div *ngIf="debugModalDisplay"  style="width: 100%; overflow: hidden; background-color: lightblue; padding: 20px 20px 20px 20px;">
+
+<dialog  id="myDialog">
     <div style="width: 600px; float: left;"> Debug Info:
     <br/>  
     <li>list any debugging info here... </li>
     <li>list any debugging info here... </li>
     <li>list any debugging info here... </li>
     </div>
-    <div style="margin-left: 620px; "> <button (click)="closeDebug()">close</button> </div>
-</div>
+    <button id="hide" (click)="HideDialog();">Hide</button>
+</dialog>
+
   `,
 })
 export class App implements OnInit {
@@ -33,12 +35,18 @@ export class App implements OnInit {
 
         this.hotkey.registerHotKey(this.keyMatch, () => {
             this.debugModalDisplay = true;
-            this.context = !!this.dataContext.winParams ? this.dataContext.winParams : null;
+            let dialog = document.getElementById('myDialog');  
+            dialog.showModal();  
+            //this.context = !!this.dataContext.winParams ? this.dataContext.winParams : null;
         });
     }
     
     closeDebug(){
       this.debugModalDisplay = false;
+    }
+    HideDialog(){
+      let dialog = document.getElementById('myDialog');  
+        dialog.close();  
     }
 }
 
